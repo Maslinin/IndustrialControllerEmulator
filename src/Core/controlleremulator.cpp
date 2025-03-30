@@ -1,11 +1,6 @@
 #include "controlleremulator.h"
 
-ControllerEmulator::ControllerEmulator(QObject* parent)
-    : QObject(parent),
-    isOn_(false),
-    goodCount_(0),
-    badCount_(0),
-    lastQuality_(ProductQuality::None)
+ControllerEmulator::ControllerEmulator(QObject* parent): QObject(parent)
 { }
 
 void ControllerEmulator::togglePower() noexcept

@@ -1,9 +1,7 @@
 #include "mainwindow.h"
 #include <QKeyEvent>
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent),
-    ui(std::make_unique<Ui::MainWindow>())
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(std::make_unique<Ui::MainWindow>())
 {
     ui->setupUi(this);
 
@@ -18,11 +16,17 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
-    switch (event->key()) {
-    case Qt::Key_Q: controller_.togglePower(); break;
-    case Qt::Key_W: controller_.addGoodProduct(); break;
-    case Qt::Key_E: controller_.addBadProduct(); break;
-    default: QMainWindow::keyPressEvent(event); break;
+    switch (event->key())
+    {
+    case Qt::Key_Q:
+        controller_.togglePower();
+        break;
+    case Qt::Key_W:
+        controller_.addGoodProduct();
+        break;
+    case Qt::Key_E:
+        controller_.addBadProduct();
+        break;
     }
 }
 

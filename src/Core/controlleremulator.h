@@ -27,10 +27,10 @@ signals:
     void countersChanged(int good, int bad);
 
 private:
-    bool isOn_;
-    int  goodCount_;
-    int  badCount_;
-    ProductQuality lastQuality_;
+    bool isOn_ = false;
+    int  goodCount_ = 0;
+    int  badCount_ = 0;
+    ProductQuality lastQuality_ = ProductQuality::None;
 };
 
 #endif // CONTROLLEREMULATOR_H
