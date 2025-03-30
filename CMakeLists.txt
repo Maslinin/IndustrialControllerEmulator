@@ -27,7 +27,7 @@ set(UI_SOURCES src/UI/mainWindow.ui)
 
 qt_wrap_ui(UI_HEADERS ${UI_SOURCES})
 
-add_executable(IndustrialControllerEmulator
+add_executable(IndustrialControllerEmulator WIN32
     ${UI_HEADERS}
     ${HEADERS}
     ${SOURCES}
@@ -37,5 +37,12 @@ include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
 )
 
-target_link_libraries(IndustrialControllerEmulator PRIVATE Qt6::Widgets)
+target_link_libraries(IndustrialControllerEmulator PRIVATE Qt::Widgets)
 target_include_directories(IndustrialControllerEmulator PRIVATE src)
+
+find_program(WINDEPLOYQT_EXECUTABLE windeployqt HINTS "${Qt_DIR}/bin")
+if(WINDEPLOYQT_EXECUTABLE)
+    add_custom_command(TARGET IndustrialControllerEmulator POST_BUILD
+        COMMAND ${WINDEPLOYQT_EXECUTABLE} $<TARGET_FILE:IndustrialControllerEmulator>
+    )
+endif()
