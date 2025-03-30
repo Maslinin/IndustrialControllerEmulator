@@ -10,22 +10,9 @@ set(CMAKE_AUTORCC ON)
 
 find_package(Qt6 COMPONENTS Widgets REQUIRED)
 
-set(HEADERS
-    src/UI/mainwindow.h
-    src/UI/circlewidget.h
-    src/Core/controlleremulator.h
-)
-
-set(SOURCES
-    src/main.cpp
-    src/UI/mainwindow.cpp
-    src/UI/circlewidget.cpp
-    src/Core/controlleremulator.cpp
-)
-
-set(UI_SOURCES src/UI/mainWindow.ui)
-
-qt_wrap_ui(UI_HEADERS ${UI_SOURCES})
+file(GLOB HEADERS src/**/*.h)
+file(GLOB SOURCES src/*.cpp src/**/*.cpp)
+file(GLOB UI_SOURCES src/UI/*.ui)
 
 add_executable(IndustrialControllerEmulator WIN32
     ${UI_HEADERS}
@@ -33,16 +20,18 @@ add_executable(IndustrialControllerEmulator WIN32
     ${SOURCES}
 )
 
-include_directories(
+target_link_libraries(IndustrialControllerEmulator PRIVATE Qt6::Widgets)
+
+target_include_directories(IndustrialControllerEmulator PRIVATE 
     ${CMAKE_CURRENT_BINARY_DIR}
+    ${CMAKE_SOURCE_DIR}
 )
 
-target_link_libraries(IndustrialControllerEmulator PRIVATE Qt::Widgets)
-target_include_directories(IndustrialControllerEmulator PRIVATE src)
-
-find_program(WINDEPLOYQT_EXECUTABLE windeployqt HINTS "${Qt_DIR}/bin")
-if(WINDEPLOYQT_EXECUTABLE)
-    add_custom_command(TARGET IndustrialControllerEmulator POST_BUILD
-        COMMAND ${WINDEPLOYQT_EXECUTABLE} $<TARGET_FILE:IndustrialControllerEmulator>
-    )
+if(WIN32)
+    find_program(WINDEPLOYQT_EXECUTABLE windeployqt HINTS "${Qt_DIR}/bin")
+    if(WINDEPLOYQT_EXECUTABLE)
+        add_custom_command(TARGET IndustrialControllerEmulator POST_BUILD
+            COMMAND ${WINDEPLOYQT_EXECUTABLE} $<TARGET_FILE:IndustrialControllerEmulator>
+        )
+    endif()
 endif()

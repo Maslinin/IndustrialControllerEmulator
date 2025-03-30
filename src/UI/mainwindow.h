@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <memory>
 #include "ui_mainWindow.h"
-#include "Core/ControllerEmulator.h"
+#include "../Core/controlleremulator.h"
 
 class MainWindow : public QMainWindow
 {

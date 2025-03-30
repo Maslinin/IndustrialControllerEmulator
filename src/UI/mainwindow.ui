@@ -135,7 +135,7 @@
   <customwidget>
    <class>CircleWidget</class>
    <extends>QWidget</extends>
-   <header>CircleWidget.h</header>
+   <header>./src/UI/circlewidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
