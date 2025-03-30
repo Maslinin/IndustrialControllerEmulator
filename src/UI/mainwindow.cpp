@@ -27,6 +27,9 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     case Qt::Key_E:
         controller_.addBadProduct();
         break;
+    default:
+        QMainWindow::keyPressEvent(event);
+        break;
     }
 }
 
@@ -38,7 +41,7 @@ void MainWindow::updatePowerIndicator(bool isOn)
 
 void MainWindow::updateSensorIndicator(ProductQuality quality)
 {
-    QColor color = Qt::gray;
+    QColor color;
     switch (quality)
     {
     case ProductQuality::Good:
@@ -51,6 +54,7 @@ void MainWindow::updateSensorIndicator(ProductQuality quality)
         color = Qt::gray;
         break;
     }
+
     ui->sensorCircle->setColor(color);
 }
 

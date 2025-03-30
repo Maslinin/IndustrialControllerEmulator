@@ -14,7 +14,7 @@ protected:
     void paintEvent(QPaintEvent *event) override;
 
 private:
-    QColor color;
+    QColor color = Qt::gray;
 };
 
 #endif // CIRCLEWIDGET_H

@@ -1,7 +1,7 @@
 #include "circlewidget.h"
 #include <QPainter>
 
-CircleWidget::CircleWidget(QWidget *parent) : QWidget(parent), color(Qt::gray)
+CircleWidget::CircleWidget(QWidget *parent) : QWidget(parent)
 { }
 
 void CircleWidget::setColor(const QColor &c)
