@@ -5,14 +5,28 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
 find_package(Qt6 COMPONENTS Widgets REQUIRED)
 
-file(GLOB HEADERS src/**/*.h)
-file(GLOB SOURCES src/*.cpp src/**/*.cpp)
-file(GLOB UI_SOURCES src/UI/*.ui)
+set(HEADERS
+    src/UI/mainwindow.h
+    src/UI/circlewidget.h
+    src/Core/controlleremulator.h
+)
+
+set(SOURCES
+    src/main.cpp
+    src/UI/mainwindow.cpp
+    src/UI/circlewidget.cpp
+    src/Core/controlleremulator.cpp
+)
+
+set(UI_FILES
+    src/UI/mainwindow.ui
+)
+
+qt6_wrap_ui(UI_HEADERS ${UI_FILES})
 
 add_executable(IndustrialControllerEmulator WIN32
     ${UI_HEADERS}
@@ -22,7 +36,7 @@ add_executable(IndustrialControllerEmulator WIN32
 
 target_link_libraries(IndustrialControllerEmulator PRIVATE Qt6::Widgets)
 
-target_include_directories(IndustrialControllerEmulator PRIVATE 
+target_include_directories(IndustrialControllerEmulator PRIVATE
     ${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_SOURCE_DIR}
 )

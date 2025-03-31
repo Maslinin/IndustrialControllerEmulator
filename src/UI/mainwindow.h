@@ -1,10 +1,10 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "../Core/controlleremulator.h"
+#include <ui_mainwindow.h>
 #include <QMainWindow>
 #include <memory>
-#include "ui_mainWindow.h"
-#include "../Core/controlleremulator.h"
 
 class MainWindow : public QMainWindow
 {
